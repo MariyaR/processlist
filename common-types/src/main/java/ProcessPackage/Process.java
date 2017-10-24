@@ -54,6 +54,7 @@ public class Process {
         StringBuffer s =new StringBuffer();
         List<Functions> Func1 =new ArrayList <Functions> ();
         List<Functions> Func2 =new ArrayList <Functions> ();
+
         for (Layer l: this.Structure)
             if (!Func1.contains(l.getFunction())) {
                 Func1.add(l.getFunction());
@@ -64,6 +65,13 @@ public class Process {
                 Func2.add(l.getFunction());
             }
 
+        List<Functions> Func = Func1;
+        Func.retainAll(Func2);
+
+        ListIterator<Functions> it =Func.listIterator();
+        while (it.hasNext()) {
+
+        }
 
 
     return s.toString();
