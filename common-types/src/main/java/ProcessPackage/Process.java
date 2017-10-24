@@ -50,6 +50,33 @@ public class Process {
     }
 
 
+    public String compareP (Process p) {
+        StringBuffer s =new StringBuffer();
+        List<Functions> Func1 =new ArrayList <Functions> ();
+        List<Functions> Func2 =new ArrayList <Functions> ();
+        for (Layer l: this.Structure)
+            if (!Func1.contains(l.getFunction())) {
+                Func1.add(l.getFunction());
+            }
+
+        for (Layer l: p.Structure)
+            if (!Func2.contains(l.getFunction())) {
+                Func2.add(l.getFunction());
+            }
+
+
+
+    return s.toString();
+    }
+
+
+
+
+
+
+
+
+
     public String compareTo (Process p, boolean b) {
         StringBuffer s =new StringBuffer();
         st=new StringBuffer(EmptyString.subSequence(0,EmptyString.length()-this.Name.toString().length()));
