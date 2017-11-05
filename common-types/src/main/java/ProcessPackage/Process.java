@@ -51,35 +51,63 @@ public class Process {
 
 
     public String compareP (Process p) {
-        StringBuffer s =new StringBuffer();
-        List<Functions> Func1 =new ArrayList <Functions> ();
-        List<Functions> Func2 =new ArrayList <Functions> ();
+        StringBuffer s = new StringBuffer();
+        List<Functions> Func1 = new ArrayList<Functions>();
+        List<Functions> Func2 = new ArrayList<Functions>();
 
-        for (Layer l: this.Structure)
+        for (Layer l : this.Structure)
             if (!Func1.contains(l.getFunction())) {
                 Func1.add(l.getFunction());
             }
 
-        for (Layer l: p.Structure)
+        for (Layer l : p.Structure)
             if (!Func2.contains(l.getFunction())) {
                 Func2.add(l.getFunction());
             }
 
-        List<Functions> Func = Func1;
-        Func.retainAll(Func2);
+        ListIterator<Functions> it1 = Func1.listIterator();
+        ListIterator<Functions> it2 = Func1.listIterator();
+        ArrayList<Functions> Serve = new ArrayList<Functions>();
+        int i, j = 0, k = 0;
 
-        ListIterator<Functions> it =Func.listIterator();
-        while (it.hasNext()) {
+        for (i = 0; i < Func1.size(); i++) {
+
+            if (Func2.contains(Func1.get(i))) {
+                while (j < i) {
+                    if (!Func2.contains(Func1.get(j))) {
+                        Serve.add(Func1.get(j));} // uslovie proverki!! Func1(i)!=Func2(j)
+                    j++;
+                }
+
+                while (k < Func2.indexOf(Func1.get(i))) {
+                    if (!Func1.contains(Func2.get(k))){
+                        Serve.add(Func2.get(k));} // uslovie proverki!! Func1(i)!=Func2(j)
+                    k++;
+                }
+
+                Serve= this.sort(Serve);
+                Serve.out();
+                Serve.clear();
+                //sravnenie i vyvod elementa Func1(i)
+            }
 
         }
-
 
     return s.toString();
     }
 
+    private ArrayList<Functions> sort (ArrayList <Functions> l) {
+
+    return l;
+    }
 
 
+    private String out (ArrayList <Functions> l) {
+        String s = new String();
 
+        return s;
+
+    }
 
 
 
