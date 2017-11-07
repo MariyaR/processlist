@@ -1,8 +1,6 @@
 package ProcessPackage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class Process {
 
@@ -49,56 +47,58 @@ public class Process {
         return Errors;
     }
 
+    //create comparator for sort of the Functioons according to Functions order
+    Comparator<Functions> FuncComp = Comparator.comparingInt(Func -> Func.getIndex());
+
 
     public String compareP (Process p) {
         StringBuffer s = new StringBuffer();
         List<Functions> Func1 = new ArrayList<Functions>();
         List<Functions> Func2 = new ArrayList<Functions>();
 
+        //collect Functions of layers from the first process
         for (Layer l : this.Structure)
             if (!Func1.contains(l.getFunction())) {
                 Func1.add(l.getFunction());
             }
-
+        //collect Functions of layers from the second process
         for (Layer l : p.Structure)
             if (!Func2.contains(l.getFunction())) {
                 Func2.add(l.getFunction());
             }
 
-        ListIterator<Functions> it1 = Func1.listIterator();
-        ListIterator<Functions> it2 = Func1.listIterator();
+        //arraylist, where different functions will be collected
         ArrayList<Functions> Serve = new ArrayList<Functions>();
         int i, j = 0, k = 0;
 
         for (i = 0; i < Func1.size(); i++) {
 
-            if (Func2.contains(Func1.get(i))) {
+            if (Func2.contains(Func1.get(i))) { //stop at common functions
                 while (j < i) {
-                    if (!Func2.contains(Func1.get(j))) {
+                    if (!Func2.contains(Func1.get(j))) { //add all different functions to the served arraylist
                         Serve.add(Func1.get(j));} // uslovie proverki!! Func1(i)!=Func2(j)
                     j++;
                 }
 
-                while (k < Func2.indexOf(Func1.get(i))) {
+                while (k < Func2.indexOf(Func1.get(i))) { //add all different functions to the served arraylist
                     if (!Func1.contains(Func2.get(k))){
                         Serve.add(Func2.get(k));} // uslovie proverki!! Func1(i)!=Func2(j)
                     k++;
                 }
 
-                Serve= this.sort(Serve);
-                Serve.out();
+                //sort the served array list according to Functions order (priority)
+               Collections.sort(Serve, FuncComp);
+                //print the sorted array to the string s
+                //Serve.out();
+
+                //clean the served arraylist
                 Serve.clear();
-                //sravnenie i vyvod elementa Func1(i)
+                //todo sravnenie i vyvod elementa Func1(i)
             }
 
         }
 
     return s.toString();
-    }
-
-    private ArrayList<Functions> sort (ArrayList <Functions> l) {
-
-    return l;
     }
 
 

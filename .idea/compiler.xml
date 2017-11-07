@@ -10,9 +10,9 @@
         <module name="common-types" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="business" target="1.5" />
-      <module name="common-types" target="1.5" />
+      <module name="common-types" target="1.8" />
       <module name="ProcessList" target="1.5" />
     </bytecodeTargetLevel>
   </component>
