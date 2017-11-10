@@ -56,6 +56,7 @@ public class Layer {
        return Conditions.get(p);
     }
 
+    //print tha layer at left side. The function toString is tested
     @Override
     public String toString () {
         Set <Parameters> Param = Conditions.keySet();
@@ -80,6 +81,7 @@ public class Layer {
         return s.toString();
     }
 
+    //print tha layer at right side. The function toString is tested
     public String toStringRight () {
         Set <Parameters> Param = Conditions.keySet();
         Iterator<Parameters> It= Param.iterator();
@@ -104,7 +106,7 @@ public class Layer {
     }
 
 
-
+    //compare 2 layers and print them to string s
     public String compareTo(Layer l, boolean b) {
         StringBuffer s= new StringBuffer();
         StringBuffer t= new StringBuffer();

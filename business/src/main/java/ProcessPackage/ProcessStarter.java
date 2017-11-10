@@ -108,6 +108,6 @@ public class ProcessStarter {
         p2.addLayer(p2l4);
         p2.addLayer(p2l5);
 
-        System.out.println(p1.compareTo(p2, true));
+        System.out.println("afdgfdag");
     }
 }
