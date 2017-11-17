@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class ServePrinter {
 
     //function to provide output to String of principally different parts of 2 processes before by the common part
-    public String ServePrint (Process p1, Process p2, ArrayList <Functions> f1, ArrayList <Functions> f2,ArrayList <Functions> l) {
+    public String ServePrint (GeneralProcess p1, GeneralProcess p2, ArrayList <Functions> f1, ArrayList <Functions> f2,ArrayList <Functions> l) {
         StringBuffer s = new StringBuffer();
         ListIterator<Functions> it = l.listIterator();
         while (it.hasNext()) {
@@ -25,7 +25,7 @@ public class ServePrinter {
     }
 
     //print from the process p all the layers with function f on the left side
-    public String leftPrint (Process p, Functions f) {
+    public String leftPrint (GeneralProcess p, Functions f) {
         StringBuffer s = new StringBuffer();
         List<Layer> Structure =p.getStructure();
         ListIterator<Layer> it=Structure.listIterator();
@@ -38,7 +38,7 @@ public class ServePrinter {
         return s.toString();
     }
     //print from the process p all the layers with function f on the right side
-    public String rightPrint (Process p, Functions f) {
+    public String rightPrint (GeneralProcess p, Functions f) {
         StringBuffer s = new StringBuffer();
         List<Layer> Structure =p.getStructure();
         ListIterator<Layer> it=Structure.listIterator();

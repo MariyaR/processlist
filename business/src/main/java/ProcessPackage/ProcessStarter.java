@@ -8,7 +8,7 @@ public class ProcessStarter {
 
     public static void main(String[] args) {
         Layer p1l1, p1l2, p1l3, p2l1,p2l2,p2l3,p2l4,p2l5,p2l6;
-        Process p1, p2;
+        LedProcess p1, p2;
 
         p1l1=new Layer();
         p1l2=new Layer();
@@ -20,8 +20,8 @@ public class ProcessStarter {
         p2l5=new Layer();
         p2l6=new Layer();
 
-        p1=new Process();
-        p2=new Process();
+        p1=new LedProcess();
+        p2=new LedProcess();
 
         //initializing layers first structure
         p1l1.setFunction(Functions.Seed_Layer);
@@ -95,6 +95,7 @@ public class ProcessStarter {
         p2l5.setCondition(Parameters.TMI,40);
 
         //initializing processes
+
         p1.setName("a121212a");
         p1.setSubstrate(Substrates.Sapphire);
         p2.setName("a121212b");
