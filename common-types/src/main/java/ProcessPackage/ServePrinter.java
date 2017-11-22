@@ -27,10 +27,10 @@ public class ServePrinter {
     //print from the process p all the layers with function f on the left side
     public String leftPrint (GeneralProcess p, Functions f) {
         StringBuffer s = new StringBuffer();
-        List<Layer> Structure =p.getStructure();
-        ListIterator<Layer> it=Structure.listIterator();
+        List<GeneralLayer> Structure =p.getStructure();
+        ListIterator<GeneralLayer> it=Structure.listIterator();
         while (it.hasNext()) {
-            Layer l= it.next();
+            GeneralLayer l= it.next();
             if (l.getFunction().equals(f)) {
                 s.append(l.toString());
             }
@@ -40,10 +40,10 @@ public class ServePrinter {
     //print from the process p all the layers with function f on the right side
     public String rightPrint (GeneralProcess p, Functions f) {
         StringBuffer s = new StringBuffer();
-        List<Layer> Structure =p.getStructure();
-        ListIterator<Layer> it=Structure.listIterator();
+        List<GeneralLayer> Structure =p.getStructure();
+        ListIterator<GeneralLayer> it=Structure.listIterator();
         while (it.hasNext()) {
-            Layer l= it.next();
+            GeneralLayer l= it.next();
             if (l.getFunction().equals(f)) {
                 s.append(l.toStringRight());
             }

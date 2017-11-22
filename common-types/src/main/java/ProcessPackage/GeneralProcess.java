@@ -11,7 +11,7 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
     private Topic ProjectTopic;
     private String OperatorComment;
     private Substrates Substrate;
-    private List <Layer> Structure = new ArrayList<Layer>();
+    private List <GeneralLayer> Structure = new ArrayList<GeneralLayer>();
     private List <ProcessError> Errors= new ArrayList<ProcessError>();
     private String EmptyString= "                                                    ";
     private StringBuffer st= new StringBuffer();
@@ -23,7 +23,7 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
     public void setProjectTopic (Topic s) {ProjectTopic=s;}
     public void setOperatorComment (String s) {OperatorComment=s;}
     public void setSubstrate (Substrates s) {Substrate=s;}
-    public void setStructure (List<Layer> l) {Structure=l;}
+    public void setStructure (List<GeneralLayer> l) {Structure=l;}
     private void setErrors (List<ProcessError> l) {Errors=l;}
 
     public Process getAnalog() {
@@ -37,7 +37,7 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
     public Substrates getSubstrate() {
         return Substrate;
     }
-    public List<Layer> getStructure() {
+    public List<GeneralLayer> getStructure() {
         return Structure;
     }
     public List<ProcessError> getErrors() {
@@ -57,12 +57,12 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
         ArrayList<Functions> Func2 = new ArrayList<Functions>();
 
         //collect all Functions from the first process. Every Function is collected 1 time only.
-        for (Layer l : this.Structure)
+        for (GeneralLayer l : this.Structure)
             if (!Func1.contains(l.getFunction())) {
                 Func1.add(l.getFunction());
             }
         //collect all Functions from the second process. Every Function is collected 1 time only.
-        for (Layer l : p.Structure)
+        for (GeneralLayer l : p.Structure)
             if (!Func2.contains(l.getFunction())) {
                 Func2.add(l.getFunction());
             }
@@ -91,8 +91,8 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
                 //clean the served arraylist
                 Serve.clear();
                 //todo sravnenie i vyvod elementa Func1(i)
-                ArrayList<Layer> SubStructure1 = getSubStructure(this,Func1.get(i));
-                ArrayList<Layer> SubStructure2 = getSubStructure(p,Func1.get(i));
+                ArrayList<GeneralLayer> SubStructure1 = getSubStructure(this,Func1.get(i));
+                ArrayList<GeneralLayer> SubStructure2 = getSubStructure(p,Func1.get(i));
                 s.append(compare(SubStructure1, SubStructure2));
             }
 
@@ -101,11 +101,11 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
     }
 
     //get block of the process with function f, for example all buffer layers
-    public ArrayList<Layer> getSubStructure (GeneralProcess p, Functions f) {
-        ArrayList Substructure = new ArrayList();
-        ListIterator<Layer> it = p.getStructure().listIterator();
+    public ArrayList<GeneralLayer> getSubStructure (GeneralProcess p, Functions f) {
+        ArrayList<GeneralLayer> Substructure = new ArrayList();
+        ListIterator<GeneralLayer> it = p.getStructure().listIterator();
         while (it.hasNext()) {
-            Layer l=it.next();
+            GeneralLayer l=it.next();
             if (l.getFunction().equals(f)) {
                 Substructure.add(l);
             }
@@ -114,27 +114,27 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
     }
 
     //method to compare 2 function blocks, for example 2 buffers
-    public String compare (ArrayList<Layer> l1, ArrayList<Layer> l2) {
+    public String compare (ArrayList<GeneralLayer> l1, ArrayList<GeneralLayer> l2) {
         StringBuffer s=new StringBuffer();
         int i=0;
-        Layer Layer1=l1.get(0);
-        Layer Layer2=l2.get(0);
+        GeneralLayer Layer1=l1.get(0);
+        GeneralLayer Layer2=l2.get(0);
         s.append(Layer1.compareTo(Layer2,true)); //todo true or false???????????????????????????????????????
         for (i=1; i< Math.max(l1.size(), l2.size()); i++) {
             if (i<l1.size()&& i<l2.size()) {
-                Layer Layer3=l1.get(i);
-                Layer Layer4=l2.get(i);
+                GeneralLayer Layer3=l1.get(i);
+                GeneralLayer Layer4=l2.get(i);
                 s.append(compare(Layer1, Layer3, Layer4));
             }
             else if (i<l1.size()&& i>=l2.size()) {
-                Layer Layer3=l1.get(i);
-                Layer Layer4=null;
+                GeneralLayer Layer3=l1.get(i);
+                GeneralLayer Layer4=null;
                 s.append(compare(Layer1, Layer3, Layer4));
             }
 
             else if (i>=l1.size()&& i<l2.size()) {
-                Layer Layer3=null;
-                Layer Layer4=l2.get(i);
+                GeneralLayer Layer3=null;
+                GeneralLayer Layer4=l2.get(i);
                 s.append(compare(Layer1, Layer3, Layer4));
             }
         }
@@ -142,7 +142,7 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
     return s.toString();
     }
 
-    public String compare (Layer replayer, Layer leftlayer, Layer rightlayer) {
+    public String compare (GeneralLayer replayer, GeneralLayer leftlayer, GeneralLayer rightlayer) {
         StringBuffer s=new StringBuffer();
 
 
@@ -155,11 +155,11 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
 
         s.append(this.Name + st + p.Name + "\n");
         s.append("---------------------------------------------------------------"+"\n");
-        ListIterator <Layer> FirstIterator = this.Structure.listIterator();
-        ListIterator <Layer> SecondIterator = p.Structure.listIterator();
+        ListIterator <GeneralLayer> FirstIterator = this.Structure.listIterator();
+        ListIterator <GeneralLayer> SecondIterator = p.Structure.listIterator();
 
         while (FirstIterator.hasNext()) {
-            Layer l= FirstIterator.next();
+            GeneralLayer l= FirstIterator.next();
             int i=p.lastIndexOf(l.getFunction());
             int j=0;
 
@@ -168,7 +168,7 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
             }
             
             while (SecondIterator.nextIndex()<=i) {
-                Layer pl= SecondIterator.next();
+                GeneralLayer pl= SecondIterator.next();
                 if (l.getFunction().equals(pl.getFunction()) && j==0) {
                     s.append(l.compareTo(pl, b)+"\n");
                     j++;
@@ -186,7 +186,7 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
     }
 
     public int lastIndexOf(Functions f) {
-        ListIterator<Layer> it = this.Structure.listIterator();
+        ListIterator<GeneralLayer> it = this.Structure.listIterator();
         int i=-1;
         while (it.hasNext()) {
             if (it.next().getFunction().equals(f)) {
@@ -203,13 +203,13 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
         return Name + " " + Substrate  + " " + Errors.toString() + " " + OperatorComment + "\n" + this.StructureToString();
     }
 
-    public void addLayer (Layer l) {
+    public void addLayer (GeneralLayer l) {
         this.Structure.add(l);
     }
 
     public String StructureToString () {
 
-        ListIterator<Layer> It = this.Structure.listIterator();
+        ListIterator<GeneralLayer> It = this.Structure.listIterator();
         StringBuffer s = new StringBuffer();
 
         while (It.hasNext()) {
