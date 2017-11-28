@@ -6,8 +6,8 @@ public class GaN_Buffer extends GeneralLayer implements Functional {
         this.setFunction(Functions.Buffer);
     }
 
-    public void GaN_Buffer () {
-        initFunction();
+     GaN_Buffer () {
+        this.initFunction();
     }
 
 }

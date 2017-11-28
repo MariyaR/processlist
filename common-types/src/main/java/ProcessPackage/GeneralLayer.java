@@ -15,7 +15,7 @@ public abstract class GeneralLayer implements Layer<GeneralLayer>{
     private LinkedHashMap<Parameters,Integer> Conditions= new LinkedHashMap<Parameters,Integer>();
 
     public Functions getFunction() {return Function;}
-    public void setFunction(Functions Function) {this.Function=Function;}
+    protected void setFunction(Functions Function) {this.Function=Function;}
     public void setConditions (LinkedHashMap<Parameters,Integer> M){
         this.Conditions=M;
     }
@@ -102,12 +102,14 @@ public abstract class GeneralLayer implements Layer<GeneralLayer>{
         StringBuffer t= new StringBuffer();
         int i=0;
 
-        if (!this.Function.equals(l.getFunction())) {
+        if (!Objects.equals(this.getFunction(), l.getFunction())) {
             s= new StringBuffer("layers are different");
         return s.toString();
         }
-        st=new StringBuffer(EmptyString.subSequence(0,EmptyString.length()-
-                this.getClass().getSimpleName().length()- this.Function.toString().length()-1));
+
+          st=new StringBuffer(EmptyString.subSequence(0,EmptyString.length()
+                - this.getClass().getSimpleName().length()
+                - this.getFunction().toString().length()-1));
         s.append(this.getFunction().toString()+" "+ this.getClass().getSimpleName() +
                 st +l.getFunction().toString()+" "+ l.getClass().getSimpleName()+ "\n");
         Set <Parameters> Param = this.Conditions.keySet();
@@ -165,11 +167,3 @@ public abstract class GeneralLayer implements Layer<GeneralLayer>{
     }
 }
 
-enum Functions {
-    Seed_Layer(0), Buffer(1), N_Buffer(2), QW(3), Barrier(4), P_Layer(5), EBLayer(6), SuperLattice(7), InterLayer(8);
-    private int index;
-    Functions(int i) {index=i;}
-    public int getIndex() {return index;}
-}
-enum LayerNames {GaN, AlGaN, InGaN, InAlGaN, SiN, twoDGaN, threeDGaN, AlN}
-enum Parameters {T, P, H2, N2, NH3, TMG, TMA, TMI, Si, Mg, time, growth_rate}
