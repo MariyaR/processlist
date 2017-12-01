@@ -151,8 +151,8 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
         s.append(leftlayer.getFunction().toString()+" "+ leftlayer.getClass().getSimpleName() +
                 st +rightlayer.getFunction().toString()+" "+ rightlayer.getClass().getSimpleName()+ "\n");
         Semaphore sem = new Semaphore(1);
-        new LeftPrintThread(replayer, leftlayer,s);
-        new RightPrintThread(replayer,rightlayer,s);
+        new LeftPrintThread(replayer, leftlayer,s, sem);
+        new RightPrintThread(replayer,rightlayer,s, sem);
         try {
             Thread.sleep(10000);
         }

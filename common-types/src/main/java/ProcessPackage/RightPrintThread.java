@@ -14,19 +14,18 @@ public class RightPrintThread implements Runnable {
 
     public Thread t;
 
-    RightPrintThread(GeneralLayer l1, GeneralLayer l2, StringBuffer ss) {
+    RightPrintThread(GeneralLayer l1, GeneralLayer l2, StringBuffer ss, Semaphore sem) {
         t = new Thread(this);
         t.start();
         RepLayer=l1;
         Layer=l2;
         s=ss;
-        //this.sem=sem;
+        this.sem=sem;
     }
 
     public void run() {
         try {
-            //sem.acquire();
-            System.out.println("???????????????????????????");
+            sem.acquire();
             Set<Parameters> Param = RepLayer.getConditions().keySet();
             Iterator<Parameters> It = Param.iterator();
             while (It.hasNext()) {
@@ -40,7 +39,7 @@ public class RightPrintThread implements Runnable {
                         if (i == 3) {
                             s.append("\n");
                             i=0;
-                            //sem.release();
+                            sem.release();
                             Thread.sleep(10);
                         }
                     }

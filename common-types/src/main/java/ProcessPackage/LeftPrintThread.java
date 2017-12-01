@@ -18,18 +18,18 @@ public class LeftPrintThread implements Runnable {
 
     public Thread t;
 
-    LeftPrintThread(GeneralLayer l1, GeneralLayer l2, StringBuffer s) {
+    LeftPrintThread(GeneralLayer l1, GeneralLayer l2, StringBuffer s, Semaphore sem) {
         t = new Thread(this);
         t.start();
         RepLayer=l1;
         Layer=l2;
         this.s=s;
-        //this.sem=sem;
+        this.sem=sem;
     }
 
     public void run() {
         try {
-            //sem.acquire();
+            sem.acquire();
             Set<Parameters> Param = RepLayer.getConditions().keySet();
             Iterator<Parameters> It = Param.iterator();
             while (It.hasNext()) {
@@ -49,11 +49,14 @@ public class LeftPrintThread implements Runnable {
 
                             i=0;
                             T=EmptyString.length();
-                            //sem.release();
+                            sem.release();
                             Thread.sleep(10);
                         }
                     }
                 }
+            }
+            if (i<3) {
+                s.append(new StringBuffer(EmptyString.subSequence(0, T)));
             }
         }
 
