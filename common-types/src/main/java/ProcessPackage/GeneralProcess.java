@@ -144,46 +144,51 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
 
     public String compare (GeneralLayer replayer, GeneralLayer leftlayer, GeneralLayer rightlayer) {
         StringBuffer s=new StringBuffer();
-
-
+        st=new StringBuffer(EmptyString.subSequence(0,EmptyString.length()
+                - leftlayer.getClass().getSimpleName().length()
+                - leftlayer.getFunction().toString().length()-1));
+        s.append(leftlayer.getFunction().toString()+" "+ leftlayer.getClass().getSimpleName() +
+                st +rightlayer.getFunction().toString()+" "+ rightlayer.getClass().getSimpleName()+ "\n");
+        LeftPrintThread LeftThread=new LeftPrintThread(replayer, leftlayer,s);
+        RightPrintThread RightThread=new RightPrintThread(replayer,rightlayer,s);
     return s.toString();
     }
 
-    public String compareTo (GeneralProcess p, boolean b) {
-        StringBuffer s =new StringBuffer();
-        st=new StringBuffer(EmptyString.subSequence(0,EmptyString.length()-this.Name.toString().length()));
+   // public String compareTo (GeneralProcess p, boolean b) {
+   //     StringBuffer s =new StringBuffer();
+   //     st=new StringBuffer(EmptyString.subSequence(0,EmptyString.length()-this.Name.toString().length()));
+//
+  //      s.append(this.Name + st + p.Name + "\n");
+   //     s.append("---------------------------------------------------------------"+"\n");
+    //    ListIterator <GeneralLayer> FirstIterator = this.Structure.listIterator();
+    //    ListIterator <GeneralLayer> SecondIterator = p.Structure.listIterator();
 
-        s.append(this.Name + st + p.Name + "\n");
-        s.append("---------------------------------------------------------------"+"\n");
-        ListIterator <GeneralLayer> FirstIterator = this.Structure.listIterator();
-        ListIterator <GeneralLayer> SecondIterator = p.Structure.listIterator();
+    //    while (FirstIterator.hasNext()) {
+    //        GeneralLayer l= FirstIterator.next();
+    //        int i=p.lastIndexOf(l.getFunction());
+    //        int j=0;
 
-        while (FirstIterator.hasNext()) {
-            GeneralLayer l= FirstIterator.next();
-            int i=p.lastIndexOf(l.getFunction());
-            int j=0;
-
-            if (i==-1) {
-                s.append(l.toString()+"\n");
-            }
+     //       if (i==-1) {
+     //           s.append(l.toString()+"\n");
+     //       }
             
-            while (SecondIterator.nextIndex()<=i) {
-                GeneralLayer pl= SecondIterator.next();
-                if (l.getFunction().equals(pl.getFunction()) && j==0) {
-                    s.append(l.compareTo(pl, b)+"\n");
-                    j++;
-                }
-                else if (l.getFunction().equals(pl.getFunction()) && j>0) {
-                    s.append(l.compareTo(pl)+"\n");
-                }
-                if (!l.getFunction().equals(pl.getFunction())) {
-                    s.append(pl.toStringRight()+"\n"+"\n");
-                }
-            }
-            s.append("---------------------------------------------------------------"+"\n");
-        }
-        return s.toString();
-    }
+     //       while (SecondIterator.nextIndex()<=i) {
+     //           GeneralLayer pl= SecondIterator.next();
+     //           if (l.getFunction().equals(pl.getFunction()) && j==0) {
+     //               s.append(l.compareTo(pl, b)+"\n");
+     //               j++;
+     //           }
+     //           else if (l.getFunction().equals(pl.getFunction()) && j>0) {
+     //               s.append(l.compareTo(pl)+"\n");
+      //          }
+      //          if (!l.getFunction().equals(pl.getFunction())) {
+      //              s.append(pl.toStringRight()+"\n"+"\n");
+      //          }
+       //     }
+        //    s.append("---------------------------------------------------------------"+"\n");
+       // }
+       // return s.toString();
+    //}
 
     public int lastIndexOf(Functions f) {
         ListIterator<GeneralLayer> it = this.Structure.listIterator();
