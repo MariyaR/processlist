@@ -1,6 +1,7 @@
 package ProcessPackage;
 
 import java.util.*;
+import java.util.concurrent.Semaphore;
 
 import static sun.swing.MenuItemLayoutHelper.max;
 
@@ -149,8 +150,14 @@ public abstract class GeneralProcess  implements Process<GeneralProcess>{
                 - leftlayer.getFunction().toString().length()-1));
         s.append(leftlayer.getFunction().toString()+" "+ leftlayer.getClass().getSimpleName() +
                 st +rightlayer.getFunction().toString()+" "+ rightlayer.getClass().getSimpleName()+ "\n");
-        LeftPrintThread LeftThread=new LeftPrintThread(replayer, leftlayer,s);
-        RightPrintThread RightThread=new RightPrintThread(replayer,rightlayer,s);
+        Semaphore sem = new Semaphore(1);
+        new LeftPrintThread(replayer, leftlayer,s);
+        new RightPrintThread(replayer,rightlayer,s);
+        try {
+            Thread.sleep(10000);
+        }
+        catch (Exception e) {e.printStackTrace();}
+
     return s.toString();
     }
 

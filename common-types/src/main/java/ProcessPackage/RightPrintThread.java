@@ -2,6 +2,7 @@ package ProcessPackage;
 
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.Semaphore;
 
 public class RightPrintThread implements Runnable {
 
@@ -9,23 +10,27 @@ public class RightPrintThread implements Runnable {
     public GeneralLayer Layer;
     public StringBuffer s;
     private int i=0;
-
+    private Semaphore sem;
 
     public Thread t;
 
     RightPrintThread(GeneralLayer l1, GeneralLayer l2, StringBuffer ss) {
-        t = new Thread(t);
+        t = new Thread(this);
         t.start();
         RepLayer=l1;
         Layer=l2;
         s=ss;
+        //this.sem=sem;
     }
 
     public void run() {
         try {
+            //sem.acquire();
+            System.out.println("???????????????????????????");
             Set<Parameters> Param = RepLayer.getConditions().keySet();
             Iterator<Parameters> It = Param.iterator();
             while (It.hasNext()) {
+               // sem.acquire();
                 Parameters parameter = It.next();
                 Integer RepValue = RepLayer.getConditions().get(parameter);
                 if (i < 3) {
@@ -35,7 +40,8 @@ public class RightPrintThread implements Runnable {
                         if (i == 3) {
                             s.append("\n");
                             i=0;
-                            Thread.sleep(1000);
+                            //sem.release();
+                            Thread.sleep(10);
                         }
                     }
                 }
