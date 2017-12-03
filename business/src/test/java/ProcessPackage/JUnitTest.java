@@ -1,6 +1,7 @@
 package ProcessPackage;
 
 
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -38,35 +39,54 @@ public class JUnitTest {
     }
 
     @Test
-    public void testCompareToFalse() {
-        String actual=GaN_B1.compareTo(GaN_B2, false);
+    public void testLayersCompareFalse() {
+
+        LayerComparer lc =new LayerComparer(GaN_B1, GaN_B2,false);
+        String actual=lc.compare2();
         String expected = "Buffer GaN_Buffer                                   Buffer GaN_Buffer\n" +
                 "TMG=30                                              TMG=35\n" +
                 "T=1000                                              T=1040\n" +
                 "P=180                                               P=200\n";
-        assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void testCompareToTrue() {
-        String actual=GaN_B1.compareTo(GaN_B2, true);
+    public void testLayersCompareTrue() {
+
+        LayerComparer lc =new LayerComparer(GaN_B1, GaN_B2,true);
+        String actual=lc.compare2();
         String expected = "Buffer GaN_Buffer                                   Buffer GaN_Buffer\n" +
                 "TMG=30                                              TMG=35\n" +
                 "T=1000                                              T=1040\n" +
                 "P=180                                               P=200\n" +
                 "H2=5000 NH3=3000 ";
-        assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void testCompareThreeLayers () {
-        String actual="111";
-        String expected="111";
-        LedProcess p=new LedProcess();
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(p.compare (GaN_B3, GaN_B1, GaN_B2));
 
-        assertEquals(expected,actual);
+        String expected="Buffer GaN_Buffer                                   Buffer GaN_Buffer\n" +
+                "H2=5000 NH3=3000 TMG=30                             H2=5000 NH3=3000 TMG=35 \n" +
+                "T=1000 P=180 N2=5000                                T=1040 P=200 N2=5010 \n" +
+                "Mg=20 time=100                                      Mg=30 time=200 \n";
+
+        GaN_B1.setCondition(Parameters.N2,5000);
+        GaN_B1.setCondition(Parameters.Mg,20);
+        GaN_B1.setCondition(Parameters.time,100);
+        GaN_B2.setCondition(Parameters.N2,5010);
+        GaN_B2.setCondition(Parameters.Mg,30);
+        GaN_B2.setCondition(Parameters.time,200);
+        GaN_B3.setCondition(Parameters.N2,5100);
+        GaN_B3.setCondition(Parameters.Mg,50);
+        GaN_B3.setCondition(Parameters.time,300);
+
+        LayerComparer lc =new LayerComparer(GaN_B1, GaN_B2, GaN_B3,false);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        //System.out.println(lc.compare3());
+
+        String actual=lc.compare3();
+        Assert.assertEquals(expected,actual);
     }
 
 }

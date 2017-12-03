@@ -7,7 +7,7 @@ import java.util.*;
 import static ProcessPackage.Parameters.*;
 
 
-public abstract class GeneralLayer implements Layer<GeneralLayer>{
+public abstract class GeneralLayer {
 
     private Functions Function;
     private String EmptyString= "                                                    ";
@@ -90,77 +90,6 @@ public abstract class GeneralLayer implements Layer<GeneralLayer>{
                 s.append("\n"+EmptyString);
                 s.append(parameter.toString() + "=" + value + " ");
                 i=0;
-            }
-        }
-        return s.toString();
-    }
-
-
-
-    public String compareTo(GeneralLayer l, boolean b) {
-        StringBuffer s= new StringBuffer();
-        StringBuffer t= new StringBuffer();
-        int i=0;
-
-        if (!Objects.equals(this.getFunction(), l.getFunction())) {
-            s= new StringBuffer("layers are different");
-        return s.toString();
-        }
-
-          st=new StringBuffer(EmptyString.subSequence(0,EmptyString.length()
-                - this.getClass().getSimpleName().length()
-                - this.getFunction().toString().length()-1));
-        s.append(this.getFunction().toString()+" "+ this.getClass().getSimpleName() +
-                st +l.getFunction().toString()+" "+ l.getClass().getSimpleName()+ "\n");
-        Set <Parameters> Param = this.Conditions.keySet();
-        Iterator<Parameters> It= Param.iterator();
-        while (It.hasNext()) {
-            Parameters parameter=It.next();
-            Integer ThisValue =this.Conditions.get(parameter);
-            Integer LValue =l.Conditions.get(parameter);
-            if (!ThisValue.equals(LValue)) {
-                st=new StringBuffer(EmptyString.subSequence(0,EmptyString.length()-
-                        parameter.toString().length()-1-ThisValue.toString().length()));
-                s.append(parameter.toString() + "=" + ThisValue + st + parameter.toString()+ "=" + LValue + "\n");
-            }
-            else {
-                if (i<3) {
-                    t.append(parameter.toString() + "=" + ThisValue + " ");
-                    i++;
-                }
-                else {
-                    t.append("\n");
-                    t.append(parameter.toString() + "=" + ThisValue + " ");
-                    i=0;
-                }
-            }
-
-        }
-        if (b==true){
-              s.append(t);
-        }
-        return s.toString();
-    }
-
-    //compare 2 layers and print them to string s
-    public String compareTo(GeneralLayer l) {
-        StringBuffer s= new StringBuffer();
-        StringBuffer t= new StringBuffer();
-        int i=0;
-        if (!this.Function.equals(l.getFunction())) {
-            s= new StringBuffer("layers are different");
-            return s.toString();
-        }
-
-        s.append(EmptyString + l.getClass().getSimpleName()+ "\n");
-        Set <Parameters> Param = this.Conditions.keySet();
-        Iterator<Parameters> It= Param.iterator();
-        while (It.hasNext()) {
-            Parameters parameter=It.next();
-            Integer ThisValue =this.Conditions.get(parameter);
-            Integer LValue =l.Conditions.get(parameter);
-            if (!ThisValue.equals(LValue)) {
-                s.append(EmptyString + parameter.toString()+ "=" + LValue + "\n");
             }
         }
         return s.toString();

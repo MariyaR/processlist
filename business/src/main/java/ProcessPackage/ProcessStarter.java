@@ -9,19 +9,19 @@ public class ProcessStarter {
     public static void main(String[] args) {
         Layer p1l1, p1l2, p1l3, p2l1,p2l2,p2l3,p2l4,p2l5,p2l6;
         LedProcess p1, p2;
-
-        p1l1=new GaN_Buffer();
-        p1l2=new GaN_Buffer();
-        p1l3=new GaN_Buffer();
-        p2l1=new GaN_Buffer();
-        p2l2=new GaN_Buffer();
-        p2l3=new GaN_Buffer();
-        p2l4=new GaN_Buffer();
-        p2l5=new GaN_Buffer();
-        p2l6=new GaN_Buffer();
-
-        p1=new LedProcess();
-        p2=new LedProcess();
+//
+//        p1l1=new GaN_Buffer();
+//        p1l2=new GaN_Buffer();
+//        p1l3=new GaN_Buffer();
+//        p2l1=new GaN_Buffer();
+//        p2l2=new GaN_Buffer();
+//        p2l3=new GaN_Buffer();
+//        p2l4=new GaN_Buffer();
+//        p2l5=new GaN_Buffer();
+//        p2l6=new GaN_Buffer();
+//
+//        p1=new LedProcess();
+//        p2=new LedProcess();
 
         //initializing layers first structure
         //p1l1.setFunction(Functions.Seed_Layer);
@@ -95,11 +95,11 @@ public class ProcessStarter {
        // p2l5.setCondition(Parameters.TMI,40);
 
         //initializing processes
-
-        p1.setName("a121212a");
-        p1.setSubstrate(Substrates.Sapphire);
-        p2.setName("a121212b");
-        p2.setSubstrate(Substrates.Si);
+//
+//        p1.setName("a121212a");
+//        p1.setSubstrate(Substrates.Sapphire);
+//        p2.setName("a121212b");
+//        p2.setSubstrate(Substrates.Si);
        // p1.addLayer(p1l1);
        // p1.addLayer(p1l2);
        // p1.addLayer(p1l3);
