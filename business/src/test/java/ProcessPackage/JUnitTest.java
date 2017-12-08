@@ -81,11 +81,11 @@ public class JUnitTest {
         GaN_B3.setCondition(Parameters.Mg,50);
         GaN_B3.setCondition(Parameters.time,300);
 
-        LayerComparer lc =new LayerComparer(GaN_B1, GaN_B2, GaN_B3,false);
+        LayerComparer lc1 =new LayerComparer( GaN_B1, GaN_B2,GaN_B3,false);
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        //System.out.println(lc.compare3());
+        String actual=lc1.compare3();
+        System.out.println(actual);
 
-        String actual=lc.compare3();
         Assert.assertEquals(expected,actual);
     }
 
