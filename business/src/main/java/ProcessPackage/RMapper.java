@@ -9,10 +9,10 @@ public class RMapper implements RowMapper <GeneralLayer> {
     @Override
     public GeneralLayer mapRow(ResultSet resultSet, int i) throws SQLException {
 
-        String function = resultSet.getString("function");
-        String LayerName = resultSet.getString("LayerName");
+        //String function = resultSet.getString("layerfunction");
+       // String LayerName = resultSet.getString("LayerName");
 
-        if (function.equals(Functions.Buffer.toString()) && LayerName.equals("GaN")) {
+       // if (function.equals(Functions.Buffer.toString()) && LayerName.equals("GaN")) {
             GeneralLayer L = new GaN_Buffer();
             L.setCondition(Parameters.T, resultSet.getInt("temperature"));
             L.setCondition(Parameters.P, resultSet.getInt("pressure"));
@@ -24,10 +24,10 @@ public class RMapper implements RowMapper <GeneralLayer> {
             L.setCondition(Parameters.TMI, resultSet.getInt("tmi"));
             L.setCondition(Parameters.Si, resultSet.getInt("si"));
             L.setCondition(Parameters.Mg, resultSet.getInt("mg"));
-            L.setCondition(Parameters.time, resultSet.getInt("time"));
+            L.setCondition(Parameters.time, resultSet.getInt("growthtime"));
             L.setCondition(Parameters.growth_rate, resultSet.getInt("growthrate"));
             return L;
-        }
-    return null;
+      //  }
+   // return null;
     }
 }

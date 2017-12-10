@@ -7,8 +7,18 @@ import com.sun.org.apache.xalan.internal.xsltc.ProcessorVersion;
 public class ProcessStarter {
 
     public static void main(String[] args) {
-        Layer p1l1, p1l2, p1l3, p2l1,p2l2,p2l3,p2l4,p2l5,p2l6;
-        LedProcess p1, p2;
+        //Layer p1l1, p1l2, p1l3, p2l1,p2l2,p2l3,p2l4,p2l5,p2l6;
+        //LedProcess p1, p2;
+
+        System.out.println("connecting to db");
+
+        DBConnector dbconnector = new DBConnector();
+        System.out.println("connecting to db");
+        System.out.println(dbconnector.getLayer("a101010a", "GaN").toString());
+
+
+
+
 //
 //        p1l1=new GaN_Buffer();
 //        p1l2=new GaN_Buffer();
@@ -109,6 +119,6 @@ public class ProcessStarter {
        // p2.addLayer(p2l4);
        // p2.addLayer(p2l5);
 
-        System.out.println("afdgfdag");
+       // System.out.println("afdgfdag");
     }
 }

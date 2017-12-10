@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Semaphore;
 
+
 public class LayerComparer {
 
     private GeneralLayer LeftLayer, RightLayer, RefLayer;
