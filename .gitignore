@@ -1,4 +1,4 @@
-git out/pok'
+git out/
 target/
-.idea
+.idea/
 *.iml
