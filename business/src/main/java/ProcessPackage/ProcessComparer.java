@@ -1,29 +1,31 @@
 package ProcessPackage;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.ListIterator;
+import java.util.*;
 
 public class ProcessComparer {
 
-    private GeneralProcess LeftProcess,RightProcess;
-    private String EmptyString= "                                                    ";
+    //private  GeneralProcess LeftProcess,RightProcess;
+    private  String EmptyString= "                                                    ";
 
-    ProcessComparer (GeneralProcess p1, GeneralProcess p2) {
-        this.LeftProcess=p1;
-        this.RightProcess=p2;
+
+    ProcessComparer () {
+
     }
 
-    Comparator<Functions> FuncComp = Comparator.comparingInt(Func -> Func.getIndex());
+
+    private  Comparator<Functions> FuncComp = Comparator.comparingInt(Func -> Func.getIndex());
 
 
-    public String compare () {
+    public  String compare(GeneralProcess LeftProcess, GeneralProcess RightProcess) {
+
+        if (checkIdentity(LeftProcess,RightProcess)) {
+            return "Processes are similar";
+        }
+
         StringBuffer s = new StringBuffer();
         StringBuffer st=new StringBuffer(EmptyString.subSequence(0,EmptyString.length()-LeftProcess.getName().toString().length()));
         s.append(LeftProcess.getName() + st + RightProcess.getName() + "\n");
         s.append("---------------------------------------------------------------"+"\n");
-
         ArrayList<Functions> Func1 = new ArrayList<Functions>();
         ArrayList<Functions> Func2 = new ArrayList<Functions>();
 
@@ -37,7 +39,6 @@ public class ProcessComparer {
             if (!Func2.contains(l.getFunction())) {
                 Func2.add(l.getFunction());
             }
-
         //arraylist, where different functions will be collected
         ArrayList<Functions> Serve = new ArrayList<Functions>();
         int i, j = 0, k = 0;
@@ -53,7 +54,6 @@ public class ProcessComparer {
                         Serve.add(Func2.get(k));} // uslovie proverki!! Func1(i)!=Func2(j)
                     k++;
                 }
-
                 //sort the served array list according to Functions order (priority)
                 Collections.sort(Serve, FuncComp);
                 //print the sorted array to the string s
@@ -72,7 +72,7 @@ public class ProcessComparer {
     }
 
     //get block of the process with function f, for example all buffer layers
-    public ArrayList<GeneralLayer> getSubStructure (GeneralProcess p, Functions f) {
+    public  ArrayList<GeneralLayer> getSubStructure (GeneralProcess p, Functions f) {
         ArrayList<GeneralLayer> Substructure = new ArrayList();
         ListIterator<GeneralLayer> it = p.getStructure().listIterator();
         while (it.hasNext()) {
@@ -85,7 +85,7 @@ public class ProcessComparer {
     }
 
     //method to compare 2 function blocks, for example 2 buffers
-    public String compare (ArrayList<GeneralLayer> l1, ArrayList<GeneralLayer> l2) {
+    public  String compare (ArrayList<GeneralLayer> l1, ArrayList<GeneralLayer> l2) {
         StringBuffer s=new StringBuffer();
         int i=0;
         GeneralLayer Layer1=l1.get(0);
@@ -118,4 +118,38 @@ public class ProcessComparer {
     }
 
 
+    private boolean checkIdentity (GeneralProcess LeftProcess, GeneralProcess RightProcess) {
+        boolean areIdentic=false;
+
+        List<GeneralLayer> LeftStructure =LeftProcess.getStructure();
+        List<GeneralLayer> RightStructure=RightProcess.getStructure();
+
+        if (LeftStructure.size()==RightStructure.size()) {
+            Iterator<GeneralLayer> leftIt= LeftStructure.listIterator();
+            Iterator <GeneralLayer> rightIt=RightStructure.listIterator();
+            while (leftIt.hasNext()) {
+                GeneralLayer LeftLayer = leftIt.next();
+                GeneralLayer RightLayer = rightIt.next();
+                if (LeftLayer.getFunction().equals(RightLayer.getFunction())) {
+                    Set<Parameters> keySet=LeftLayer.getConditions().keySet();
+                    Iterator<Parameters> it=keySet.iterator();
+                    while(it.hasNext()) {
+                        Parameters parameter=it.next();
+                        if (LeftLayer.getConditions().get(parameter)!=RightLayer.getConditions().get(parameter)) {
+                            areIdentic=false;
+                        }
+                        else areIdentic=true;
+                    }
+
+                }
+
+                else areIdentic = false;
+            }
+
+        }
+
+        else areIdentic=false;
+
+        return areIdentic;
+    }
 }

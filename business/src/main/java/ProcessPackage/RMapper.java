@@ -14,18 +14,18 @@ public class RMapper implements RowMapper <GeneralLayer> {
 
        // if (function.equals(Functions.Buffer.toString()) && LayerName.equals("GaN")) {
             GeneralLayer L = new GaN_Buffer();
-            L.setCondition(Parameters.T, resultSet.getInt("temperature"));
-            L.setCondition(Parameters.P, resultSet.getInt("pressure"));
-            L.setCondition(Parameters.H2, resultSet.getInt("h2"));
-            L.setCondition(Parameters.N2, resultSet.getInt("n2"));
-            L.setCondition(Parameters.NH3, resultSet.getInt("nh3"));
-            L.setCondition(Parameters.TMG, resultSet.getInt("tmg"));
-            L.setCondition(Parameters.TMA, resultSet.getInt("tma"));
-            L.setCondition(Parameters.TMI, resultSet.getInt("tmi"));
-            L.setCondition(Parameters.Si, resultSet.getInt("si"));
-            L.setCondition(Parameters.Mg, resultSet.getInt("mg"));
-            L.setCondition(Parameters.time, resultSet.getInt("growthtime"));
-            L.setCondition(Parameters.growth_rate, resultSet.getInt("growthrate"));
+            L.setTemperature(resultSet.getInt("temperature"));
+            L.setPressure(resultSet.getInt("pressure"));
+            L.setH2(resultSet.getInt("h2"));
+            L.setN2(resultSet.getInt("n2"));
+            L.setNh3(resultSet.getInt("nh3"));
+            L.setTmg(resultSet.getInt("tmg"));
+            L.setTma(resultSet.getInt("tma"));
+            L.setTmi(resultSet.getInt("tmi"));
+            L.setSi(resultSet.getInt("si"));
+            L.setMg(resultSet.getInt("mg"));
+            L.setGrowthTime(resultSet.getInt("growthtime"));
+            L.setGrowthRate(resultSet.getInt("growthrate"));
             return L;
       //  }
    // return null;

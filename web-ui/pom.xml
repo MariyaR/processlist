@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ProcessList</artifactId>
+        <groupId>ProcessList</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>web-ui</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>vaadin-addons</id>
+            <url>http://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+        <repository>
+            <id>vaadin-snapshots</id>
+            <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencies>
+    <dependency>
+        <groupId>ProcessList</groupId>
+        <artifactId>common-types</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>ProcessList</groupId>
+        <artifactId>business</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>com.vaadin</groupId>
+        <artifactId>vaadin-server</artifactId>
+        <version>${vaadin.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.vaadin</groupId>
+        <artifactId>vaadin-client-compiled</artifactId>
+        <version>${vaadin.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.vaadin</groupId>
+        <artifactId>vaadin-themes</artifactId>
+        <version>${vaadin.version}</version>
+    </dependency>
+
+        <dependency>
+            <groupId>org.vaadin</groupId>
+            <artifactId>viritin</artifactId>
+            <version>2.3</version>
+        </dependency>
+
+    <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-web-api</artifactId>
+    </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+
+</project>

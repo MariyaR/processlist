@@ -1,29 +1,25 @@
 package ProcessPackage;
 
-import sun.java2d.loops.FillRect;
-
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.Semaphore;
 
-public class LeftPrintThread implements Runnable {
+public class RightPrintThreadIncorrect implements Runnable {
 
-    private Semaphore sem;
-    private String EmptyString= "                                                    ";
-    private GeneralLayer RepLayer;
-    private GeneralLayer Layer;
-    private StringBuffer s;
+    public GeneralLayer RepLayer;
+    public GeneralLayer Layer;
+    public StringBuffer s;
     private int i=0;
-    private int T=EmptyString.length();
+    private Semaphore sem;
 
     public Thread t;
 
-    LeftPrintThread(GeneralLayer l1, GeneralLayer l2, StringBuffer s, Semaphore sem) {
+    RightPrintThreadIncorrect(GeneralLayer l1, GeneralLayer l2, StringBuffer ss, Semaphore sem) {
         t = new Thread(this);
         t.start();
         RepLayer=l1;
         Layer=l2;
-        this.s=s;
+        s=ss;
         this.sem=sem;
     }
 
@@ -38,20 +34,15 @@ public class LeftPrintThread implements Runnable {
                 if (i < 3) {
                     if (!RepValue.equals(Layer.getConditions().get(parameter))) {
                         s.append(parameter.toString() + "=" + Layer.getConditions().get(parameter) + " ");
-                        T = T - parameter.toString().length() - 2 - Layer.getConditions().get(parameter).toString().length();
                         i++;
                         if (i == 3) {
-                            s.append(new StringBuffer(EmptyString.subSequence(0, T)));
+                            s.append("\n");
                             i=0;
-                            T=EmptyString.length();
                             sem.release();
                             Thread.sleep(10);
                         }
                     }
                 }
-            }
-            if (i<3) {
-                s.append(new StringBuffer(EmptyString.subSequence(0, T)));
             }
             sem.release();
             Thread.sleep(10);

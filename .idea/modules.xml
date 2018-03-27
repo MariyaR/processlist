@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/OldLogic/OldLogic.iml" filepath="$PROJECT_DIR$/OldLogic/OldLogic.iml" />
       <module fileurl="file://$PROJECT_DIR$/ProcessList.iml" filepath="$PROJECT_DIR$/ProcessList.iml" />
       <module fileurl="file://$PROJECT_DIR$/business/business.iml" filepath="$PROJECT_DIR$/business/business.iml" />
       <module fileurl="file://$PROJECT_DIR$/common-types/common-types.iml" filepath="$PROJECT_DIR$/common-types/common-types.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web-ui/web-ui.iml" filepath="$PROJECT_DIR$/web-ui/web-ui.iml" />
     </modules>
   </component>
 </project>

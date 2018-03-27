@@ -5,12 +5,10 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-public class DBConnector {
+public class SpringDBConnector {
 
-    private static final Logger log = LogManager.getLogger(DBConnector.class);
+    private static final Logger log = LogManager.getLogger(SpringDBConnector.class);
 
     ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"springContext.xml"});
 

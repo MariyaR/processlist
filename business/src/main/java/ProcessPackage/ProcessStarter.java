@@ -1,124 +1,52 @@
 package ProcessPackage;
 
-//version 1
 
-import com.sun.org.apache.xalan.internal.xsltc.ProcessorVersion;
+import org.slf4j.LoggerFactory;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class ProcessStarter {
 
+//    public static void main(String[] args) {
+//
+//        System.out.println("connecting to db");
+//
+//        SpringDBConnector dbconnector = new SpringDBConnector();
+//        System.out.println("connecting to db");
+//        System.out.println(dbconnector.getLayer("a101010a", "GaN").toString());
+//
+//
+//
+//    }
+
+    private org.slf4j.Logger log = LoggerFactory.getLogger(DBHandler.class);
+
     public static void main(String[] args) {
-        //Layer p1l1, p1l2, p1l3, p2l1,p2l2,p2l3,p2l4,p2l5,p2l6;
-        //LedProcess p1, p2;
-
-        System.out.println("connecting to db");
-
-        DBConnector dbconnector = new DBConnector();
-        System.out.println("connecting to db");
-        System.out.println(dbconnector.getLayer("a101010a", "GaN").toString());
 
 
 
-
-//
-//        p1l1=new GaN_Buffer();
-//        p1l2=new GaN_Buffer();
-//        p1l3=new GaN_Buffer();
-//        p2l1=new GaN_Buffer();
-//        p2l2=new GaN_Buffer();
-//        p2l3=new GaN_Buffer();
-//        p2l4=new GaN_Buffer();
-//        p2l5=new GaN_Buffer();
-//        p2l6=new GaN_Buffer();
-//
-//        p1=new LedProcess();
-//        p2=new LedProcess();
-
-        //initializing layers first structure
-        //p1l1.setFunction(Functions.Seed_Layer);
-       // p1l1.setLayerName(LayerNames.twoDGaN);
-        //p1l1.setCondition(Parameters.H2,5000);
-        //p1l1.setCondition(Parameters.NH3,3000);
-        //p1l1.setCondition(Parameters.TMG,30);
-       // p1l1.setCondition(Parameters.T,1000);
-       // p1l1.setCondition(Parameters.P,200);
-
-        //p1l2.setFunction(Functions.Buffer);
-       // p1l2.setLayerName(LayerNames.GaN);
-       // p1l2.setCondition(Parameters.H2,5000);
-       // p1l2.setCondition(Parameters.NH3,3000);
-        //p1l2.setCondition(Parameters.TMG,35);
-       // p1l2.setCondition(Parameters.T,1040);
-       // p1l2.setCondition(Parameters.P,200);
-
-
-       // p1l3.setFunction(Functions.QW);
-        //p1l3.setLayerName(LayerNames.InGaN);
-        //p1l3.setCondition(Parameters.H2,5000);
-        //p1l3.setCondition(Parameters.NH3,3000);
-       // p1l3.setCondition(Parameters.TMG,25);
-        //p1l3.setCondition(Parameters.T,800);
-       // p1l3.setCondition(Parameters.P,400);
-        //p1l3.setCondition(Parameters.TMI,40);
-
-        //second structure
-
-       // p2l1.setFunction(Functions.Buffer);
-        //p2l1.setLayerName(LayerNames.GaN);
-       // p2l1.setCondition(Parameters.H2,5000);
-       // p2l1.setCondition(Parameters.NH3,3000);
-       // p2l1.setCondition(Parameters.TMG,25);
-       // p2l1.setCondition(Parameters.T,1040);
-       // p2l1.setCondition(Parameters.P,200);
-
-       // p2l2.setFunction(Functions.Buffer);
-        //p2l2.setLayerName(LayerNames.GaN);
-        //p2l2.setCondition(Parameters.H2,5000);
-       // p2l2.setCondition(Parameters.NH3,3000);
-       // p2l2.setCondition(Parameters.TMG,25);
-       // p2l2.setCondition(Parameters.T,1030);
-       // p2l2.setCondition(Parameters.P,200);
-
-        //p2l3.setFunction(Functions.InterLayer);
-       // p2l3.setLayerName(LayerNames.SiN);
-       // p2l3.setCondition(Parameters.H2,5000);
-       // p2l3.setCondition(Parameters.NH3,3000);
-       // p2l3.setCondition(Parameters.T,1040);
-       // p2l3.setCondition(Parameters.P,200);
-       // p2l3.setCondition(Parameters.Si,20);
-
-       // p2l4.setFunction(Functions.Buffer);
-       // p2l4.setLayerName(LayerNames.AlGaN);
-       // p2l4.setCondition(Parameters.H2,5000);
-       // p2l4.setCondition(Parameters.NH3,3000);
-       // p2l4.setCondition(Parameters.TMG,25);
-       // p2l4.setCondition(Parameters.T,1040);
-       // p2l4.setCondition(Parameters.P,200);
-       // p2l4.setCondition(Parameters.TMA,10);
-
-       // p2l5.setFunction(Functions.QW);
-       // p2l5.setLayerName(LayerNames.InGaN);
-       // p2l5.setCondition(Parameters.H2,5000);
-        //p2l5.setCondition(Parameters.NH3,3000);
-        //p2l5.setCondition(Parameters.TMG,25);
-        //p2l5.setCondition(Parameters.T,800);
-       // p2l5.setCondition(Parameters.P,400);
-       // p2l5.setCondition(Parameters.TMI,40);
-
-        //initializing processes
-//
-//        p1.setName("a121212a");
-//        p1.setSubstrate(Substrates.Sapphire);
-//        p2.setName("a121212b");
-//        p2.setSubstrate(Substrates.Si);
-       // p1.addLayer(p1l1);
-       // p1.addLayer(p1l2);
-       // p1.addLayer(p1l3);
-       // p2.addLayer(p2l1);
-       // p2.addLayer(p2l2);
-       // p2.addLayer(p2l3);
-       // p2.addLayer(p2l4);
-       // p2.addLayer(p2l5);
-
-       // System.out.println("afdgfdag");
+    List<GeneralProcess> processlist = new Repository().list();
+        List<GeneralProcess> processlist2 = new Repository().list();
+    GeneralProcess p1=new GeneralProcess();
+    GeneralProcess p2=new GeneralProcess();
+        Iterator<GeneralProcess> it= processlist.listIterator();
+    while (it.hasNext()) {
+        GeneralProcess p=it.next();
+        if (p.getName().equals("a101111a")) {p1=p;}
+        if (p.getName().equals("a101112a")) {p2=p;}
     }
+
+
+        ProcessComparer comp=new ProcessComparer();
+
+        System.out.println(comp.compare(p1,p2));
+        //System.out.println(p1.toString();
+
+        //LayerComparer compr=new LayerComparer(p2.getStructure().get(1),p1.getStructure().get(2),p2.getStructure().get(0),true);
+       // System.out.println(compr.compare3());
+       // compr.compare3();
+
+    }
+
 }

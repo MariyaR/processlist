@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ServePrinter {
 
-    //function to provide output to String of principally different parts of 2 processes before by the common part
+    //function to provide output to String of principally different parts of 2 processes before the common part
     public String ServePrint (GeneralProcess p1, GeneralProcess p2, ArrayList <Functions> f1, ArrayList <Functions> f2,ArrayList <Functions> l) {
         StringBuffer s = new StringBuffer();
         ListIterator<Functions> it = l.listIterator();

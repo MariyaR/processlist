@@ -8,12 +8,16 @@
         <outputRelativeToContentRoot value="true" />
         <module name="business" />
         <module name="common-types" />
+        <module name="OldLogic" />
+        <module name="web-ui" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="business" target="1.8" />
       <module name="common-types" target="1.8" />
+      <module name="OldLogic" target="1.8" />
       <module name="ProcessList" target="1.8" />
+      <module name="web-ui" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
