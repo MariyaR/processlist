@@ -13,7 +13,7 @@ public class RMapper implements RowMapper <GeneralLayer> {
        // String LayerName = resultSet.getString("LayerName");
 
        // if (function.equals(Functions.Buffer.toString()) && LayerName.equals("GaN")) {
-            GeneralLayer L = new GaN_Buffer();
+            GeneralLayer L = new GeneralLayer();
             L.setTemperature(resultSet.getInt("temperature"));
             L.setPressure(resultSet.getInt("pressure"));
             L.setH2(resultSet.getInt("h2"));

@@ -12,9 +12,9 @@ import static org.junit.Assert.*;
 
 public class JUnitTest {
 
-    static GeneralLayer GaN_B1=new GaN_Buffer();
-    static GeneralLayer GaN_B2=new GaN_Buffer();
-    static GeneralLayer GaN_B3=new GaN_Buffer();
+    static GeneralLayer GaN_B1=new GeneralLayer();
+    static GeneralLayer GaN_B2=new GeneralLayer();
+    static GeneralLayer GaN_B3=new GeneralLayer();
 
     @BeforeClass
     public static void init(){
