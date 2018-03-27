@@ -1,4 +1,4 @@
-git out/
+git out/pok'
 target/
-.idea/workspace.xml
+.idea
 *.iml
